@@ -20,15 +20,19 @@ router.get("/test") { request, response, next in
 router.get("/json") { (request, response, next) in
     let id = request.queryParameters["id"] ?? ""
     let dict: [String: Any] = [
-        "shop": "bood_store",
-        "Item": [
+        "ios": [
             "id": "\(id)",
-            "name": "book",
-            "value": "890"
+            "name": "swift"
+        ],
+        "android": [
+            "id": "\(id)",
+            "name": "Kotlin"
         ]
+        
     ]
     try response.send(json: JSON(dict)).end()
 }
 
+// http://localhost:8090/
 Kitura.addHTTPServer(onPort: 8090, with: router)
 Kitura.run()
